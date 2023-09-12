@@ -156,7 +156,7 @@ class RVInstMV<bits<7> funct7, bits<3> mask, dag outs, dag ins,
   let Inst{19-15} = rs1;
   let Inst{14-12} = mask;
   let Inst{11-7} = vd;
-  let Opcode = OPC_OP_V.Value;
+  let Inst{6-0} = OPC_OP_V.Value;
 
   let Uses = [VTYPE, VL];
   let RVVConstraint = VMConstraint;
