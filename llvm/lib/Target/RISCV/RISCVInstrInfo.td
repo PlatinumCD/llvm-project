@@ -738,6 +738,8 @@ def MVML  : MVM_rr<0b0000100, 0b111, "mvm.l", Commutable=0>,  // mvm load
            Sched<[WriteIALU, ReadIALU, ReadIALU]>;
 def MVMS  : MVM_rr<0b0000101, 0b111, "mvm.s", Commutable=0>,  // mvm store
            Sched<[WriteIALU, ReadIALU, ReadIALU]>;
+def MVMMV  : MVM_rr<0b0000110, 0b111, "mvm.mv", Commutable=0>,  // mvm move
+           Sched<[WriteIALU, ReadIALU, ReadIALU]>;
 
 let hasSideEffects = 1, mayLoad = 0, mayStore = 0 in {
 def FENCE : RVInstI<0b000, OPC_MISC_MEM, (outs),
