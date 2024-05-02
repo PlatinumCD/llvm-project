@@ -745,8 +745,6 @@ def MVMMV  : MVM_rr<0b0000101, 0b111, "mvm.mv", Commutable=0>,  // mvm move
              Sched<[WriteIALU, ReadIALU, ReadIALU]>;
 def MVMI   : MVM_rr<0b0000110, 0b111, "mvm.i", Commutable=0>,   // mvm device info
              Sched<[WriteIALU, ReadIALU, ReadIALU]>;
-def MVMSFU : MVM_rr<0b0000111, 0b111, "mvm.sfu", Commutable=0>, // mvm update scale factor
-             Sched<[WriteIALU, ReadIALU, ReadIALU]>;
 
 let hasSideEffects = 1, mayLoad = 0, mayStore = 0 in {
 def FENCE : RVInstI<0b000, OPC_MISC_MEM, (outs),
