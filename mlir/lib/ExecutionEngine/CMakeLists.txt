@@ -136,7 +136,8 @@ if(LLVM_ENABLE_PIC)
   add_subdirectory(SparseTensor)
 
   add_mlir_library(mlir_c_runner_utils
-    SHARED
+      #    SHARED
+    STATIC
     CRunnerUtils.cpp
     SparseTensorRuntime.cpp
 
@@ -151,7 +152,8 @@ if(LLVM_ENABLE_PIC)
   target_compile_definitions(mlir_c_runner_utils PRIVATE mlir_c_runner_utils_EXPORTS)
 
   add_mlir_library(mlir_runner_utils
-    SHARED
+      #    SHARED
+    STATIC
     RunnerUtils.cpp
 
     EXCLUDE_FROM_LIBMLIR
