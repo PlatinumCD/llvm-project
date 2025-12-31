@@ -1643,6 +1643,18 @@ def HasVendorXAndesVDot
                          "'XAndesVDot' (Andes Vector Dot Product Extension)">;
 
 //===----------------------------------------------------------------------===//
+// LLVM Sandia Analog extension
+//===----------------------------------------------------------------------===//
+
+def FeatureVendorXSandiaAnalog
+    : RISCVExtension<1, 0, "Sandia Analog Co-Processor Extension">;
+def HasVendorXSandiaAnalog
+    : Predicate<"Subtarget->hasVendorXSandiaAnalog()">,
+      AssemblerPredicate<(all_of FeatureVendorXSandiaAnalog),
+                         "'XSandiaAnalog' (Sandia Analog Co-Processor Exntension)">;
+
+
+//===----------------------------------------------------------------------===//
 // LLVM specific features and extensions
 //===----------------------------------------------------------------------===//
 

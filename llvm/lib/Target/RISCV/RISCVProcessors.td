@@ -799,3 +799,22 @@ def ANDES_AX45MPV : RISCVProcessorModel<"andes-ax45mpv",
                                          FeatureStdExtV,
                                          FeatureVendorXAndesPerf],
                                         Andes45TuneFeatures>;
+
+//===----------------------------------------------------------------------===//
+// Sandia Analog CPU
+//===----------------------------------------------------------------------===//
+
+def SANDIA_ANALOG_CPU : RISCVProcessorModel<"sandia-analog",
+                                            NoSchedModel,
+                                            [Feature64Bit,
+                                             FeatureStdExtI,
+                                             FeatureStdExtZicsr,
+                                             FeatureStdExtZifencei,
+                                             FeatureStdExtM,
+                                             FeatureStdExtA,
+                                             FeatureStdExtF,
+                                             FeatureStdExtD,
+                                             FeatureStdExtC,
+                                             FeatureStdExtV,
+                                             FeatureVendorXSandiaAnalog]
+                                            >;
