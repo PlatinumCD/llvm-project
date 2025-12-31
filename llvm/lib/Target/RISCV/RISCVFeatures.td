@@ -1651,7 +1651,7 @@ def FeatureVendorXSandiaAnalog
 def HasVendorXSandiaAnalog
     : Predicate<"Subtarget->hasVendorXSandiaAnalog()">,
       AssemblerPredicate<(all_of FeatureVendorXSandiaAnalog),
-                         "'XSandiaAnalog' (Sandia Analog Co-Processor Exntension)">;
+                         "'XSandiaAnalog' (Sandia Analog Co-Processor Extension)">;
 
 
 //===----------------------------------------------------------------------===//
