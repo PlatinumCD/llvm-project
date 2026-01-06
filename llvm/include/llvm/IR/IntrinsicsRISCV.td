@@ -1897,3 +1897,7 @@ include "llvm/IR/IntrinsicsRISCVXTHead.td"
 include "llvm/IR/IntrinsicsRISCVXsf.td"
 include "llvm/IR/IntrinsicsRISCVXCV.td"
 include "llvm/IR/IntrinsicsRISCVXAndes.td"
+
+// Sandia-specific intrinsics
+//===----------------------------------------------------------------------===//
+include "llvm/IR/IntrinsicsRISCVXSandia.td"
