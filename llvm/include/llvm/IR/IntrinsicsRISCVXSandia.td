@@ -18,34 +18,34 @@ let TargetPrefix = "sandia" in {
         Intrinsic<
             [llvm_i32_ty],
             [llvm_ptr_ty, llvm_i32_ty],
-            [IntrReadMem, IntrHasSideEffects]
+            [IntrHasSideEffects, IntrWriteMem, IntrReadMem]
         >; 
 
     def int_sandia_analog_mvm_load :
         Intrinsic<
             [llvm_i32_ty],
             [llvm_ptr_ty, llvm_i32_ty],
-            [IntrReadMem, IntrHasSideEffects]
+            [IntrHasSideEffects, IntrWriteMem, IntrReadMem]
         >;
 
     def int_sandia_analog_mvm :
         Intrinsic<
             [llvm_i32_ty],
             [llvm_i32_ty],
-            [IntrHasSideEffects]
+            [IntrHasSideEffects, IntrWriteMem]
         >;
 
     def int_sandia_analog_mvm_store :
         Intrinsic<
             [llvm_i32_ty],
             [llvm_ptr_ty, llvm_i32_ty],
-            [IntrWriteMem, IntrHasSideEffects]
+            [IntrHasSideEffects, IntrWriteMem]
         >;
 
     def int_sandia_analog_mvm_move :
         Intrinsic<
             [llvm_i32_ty],
             [llvm_i32_ty, llvm_i32_ty],
-            [IntrHasSideEffects]
+            [IntrHasSideEffects, IntrWriteMem]
         >;
 }
