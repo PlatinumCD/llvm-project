@@ -1,4 +1,4 @@
-//===-- RISCVInstrInfoXSandia.td ----------------------------*- tablegen -*-===//
+//===-- RISCVInstrInfoXGolem.td ----------------------------*- tablegen -*-===//
 //
 // Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
 // See https://llvm.org/LICENSE.txt for license information.
@@ -30,12 +30,12 @@ class MVM_rr<bits<7> funct7, bits<3> funct3, string opcodestr>
 class MVM_rrSched : Sched<[WriteIALU, ReadIALU, ReadIALU]>;
 
 //===----------------------------------------------------------------------===//
-// XSandiaAnalog Instructions
+// XGolemAnalog Instructions
 //===----------------------------------------------------------------------===//
 
-let DecoderNamespace = "XSandia" in {
+let DecoderNamespace = "XGolem" in {
 
-let Predicates = [HasVendorXSandiaAnalog] in {
+let Predicates = [HasVendorXGolemAnalog] in {
 
     def MVMSET : MVM_rr<0b0000001, 0b111, "mvm.set" >, MVM_rrSched { let mayLoad = 1; }
     def MVML   : MVM_rr<0b0000010, 0b111, "mvm.l"   >, MVM_rrSched { let mayLoad = 1; }
@@ -48,7 +48,7 @@ let Predicates = [HasVendorXSandiaAnalog] in {
 }
 
 //===----------------------------------------------------------------------===//
-// XSandiaAnalog Selection DAG Nodes
+// XGolemAnalog Selection DAG Nodes
 //===----------------------------------------------------------------------===//
 
 def RISCVAnalogMVMSet
@@ -58,7 +58,7 @@ def RISCVAnalogMVMSet
                  SDTCisPtrTy<1>,
                  SDTCisVT<2, i32>
                ]>,
-               [SDNPHasChain, SDNPNotDuplicable, SDNPMayStore, SDNPMayLoad]>;
+               [SDNPHasChain, SDNPMayStore, SDNPMayLoad]>;
 
 def RISCVAnalogMVMLoad
     : RVSDNode<"ANALOG_MVM_LOAD",
@@ -67,7 +67,7 @@ def RISCVAnalogMVMLoad
                  SDTCisPtrTy<1>,
                  SDTCisVT<2, i32>
                ]>,
-               [SDNPHasChain, SDNPNotDuplicable, SDNPMayStore, SDNPMayLoad]>;
+               [SDNPHasChain, SDNPMayStore, SDNPMayLoad]>;
 
 def RISCVAnalogMVM
     : RVSDNode<"ANALOG_MVM",
@@ -75,7 +75,7 @@ def RISCVAnalogMVM
                  SDTCisVT<0, i32>,
                  SDTCisVT<1, i32>
                ]>,
-               [SDNPHasChain, SDNPNotDuplicable, SDNPMayStore]>;
+               [SDNPHasChain, SDNPMayStore]>;
 
 def RISCVAnalogMVMStore
     : RVSDNode<"ANALOG_MVM_STORE",
@@ -84,7 +84,7 @@ def RISCVAnalogMVMStore
                  SDTCisPtrTy<1>,
                  SDTCisVT<2, i32>
                ]>,
-               [SDNPHasChain, SDNPNotDuplicable, SDNPMayStore]>;
+               [SDNPHasChain, SDNPMayStore]>;
 
 def RISCVAnalogMVMMove
     : RVSDNode<"ANALOG_MVM_MOVE",
@@ -93,4 +93,4 @@ def RISCVAnalogMVMMove
                  SDTCisVT<1, i32>,
                  SDTCisVT<2, i32>
                ]>,
-               [SDNPHasChain, SDNPNotDuplicable, SDNPMayStore]>;
+               [SDNPHasChain, SDNPMayStore]>;

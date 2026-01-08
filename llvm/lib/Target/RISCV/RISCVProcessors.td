@@ -801,10 +801,10 @@ def ANDES_AX45MPV : RISCVProcessorModel<"andes-ax45mpv",
                                         Andes45TuneFeatures>;
 
 //===----------------------------------------------------------------------===//
-// Sandia Analog CPU
+// Golem Analog CPU
 //===----------------------------------------------------------------------===//
 
-def SANDIA_ANALOG_CPU : RISCVProcessorModel<"sandia-analog",
+def GOLEM_ANALOG_CPU : RISCVProcessorModel<"golem-analog",
                                             NoSchedModel,
                                             [Feature64Bit,
                                              FeatureStdExtI,
@@ -816,5 +816,5 @@ def SANDIA_ANALOG_CPU : RISCVProcessorModel<"sandia-analog",
                                              FeatureStdExtD,
                                              FeatureStdExtC,
                                              FeatureStdExtV,
-                                             FeatureVendorXSandiaAnalog]
+                                             FeatureVendorXGolemAnalog]
                                             >;

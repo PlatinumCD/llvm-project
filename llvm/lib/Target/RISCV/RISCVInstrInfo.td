@@ -2310,10 +2310,10 @@ include "RISCVInstrInfoXRivos.td"
 include "RISCVInstrInfoXAndes.td"
 
 //===----------------------------------------------------------------------===//
-// Sandia Analog extension
+// Golem Analog extension
 //===----------------------------------------------------------------------===//
 
-include "RISCVInstrInfoXSandia.td"
+include "RISCVInstrInfoXGolem.td"
 
 //===----------------------------------------------------------------------===//
 // Global ISel

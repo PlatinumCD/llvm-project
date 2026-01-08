@@ -1898,6 +1898,6 @@ include "llvm/IR/IntrinsicsRISCVXsf.td"
 include "llvm/IR/IntrinsicsRISCVXCV.td"
 include "llvm/IR/IntrinsicsRISCVXAndes.td"
 
-// Sandia-specific intrinsics
+// Golem-specific intrinsics
 //===----------------------------------------------------------------------===//
-include "llvm/IR/IntrinsicsRISCVXSandia.td"
+include "llvm/IR/IntrinsicsRISCVXGolem.td"
