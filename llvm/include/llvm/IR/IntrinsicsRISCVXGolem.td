@@ -10,42 +10,39 @@
 //
 //===----------------------------------------------------------------------===//
 
-// All intrinsics return 0 for success otherwise fail
-
 let TargetPrefix = "riscv" in {
-
     def int_riscv_golem_analog_mvm_set :
         Intrinsic<
-            [llvm_i32_ty],
+            [],
             [llvm_ptr_ty, llvm_i32_ty],
-            [IntrHasSideEffects, IntrWriteMem]
+            [IntrHasSideEffects, IntrReadMem]
         >; 
 
     def int_riscv_golem_analog_mvm_load :
         Intrinsic<
-            [llvm_i32_ty],
+            [],
             [llvm_ptr_ty, llvm_i32_ty],
-            [IntrHasSideEffects, IntrWriteMem]
+            [IntrHasSideEffects, IntrReadMem]
         >;
 
     def int_riscv_golem_analog_mvm :
         Intrinsic<
+            [],
             [llvm_i32_ty],
-            [llvm_i32_ty],
-            [IntrHasSideEffects, IntrWriteMem]
+            [IntrHasSideEffects]
         >;
 
     def int_riscv_golem_analog_mvm_store :
         Intrinsic<
-            [llvm_i32_ty],
+            [],
             [llvm_ptr_ty, llvm_i32_ty],
             [IntrHasSideEffects, IntrWriteMem]
         >;
 
     def int_riscv_golem_analog_mvm_move :
         Intrinsic<
-            [llvm_i32_ty],
+            [],
             [llvm_i32_ty, llvm_i32_ty],
-            [IntrHasSideEffects, IntrWriteMem]
+            [IntrHasSideEffects]
         >;
 }

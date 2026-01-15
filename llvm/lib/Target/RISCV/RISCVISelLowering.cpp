@@ -11053,6 +11053,85 @@ SDValue RISCVTargetLowering::LowerINTRINSIC_VOID(SDValue Op,
     return getVCIXISDNodeVOID(Op, DAG, RISCVISD::SF_VC_VVW_SE);
   case Intrinsic::riscv_sf_vc_fvw_se:
     return getVCIXISDNodeVOID(Op, DAG, RISCVISD::SF_VC_FVW_SE);
+  case Intrinsic::riscv_golem_analog_mvm_set: {
+    SDLoc DL(Op);
+    SDValue Chain = Op.getOperand(0);
+    SDValue Ptr   = Op.getOperand(2);
+    SDValue Tile  = Op.getOperand(3);
+
+    // Tile still needs to be XLEN for the instruction
+    MVT XLenVT = Subtarget.getXLenVT();
+    if (Tile.getSimpleValueType() != XLenVT)
+      Tile = DAG.getNode(ISD::ANY_EXTEND, DL, XLenVT, Tile);
+
+    SDVTList VTs = DAG.getVTList(MVT::Other);
+    return DAG.getNode(RISCVISD::ANALOG_MVM_SET, DL, VTs,
+                       Chain, Ptr, Tile);
+  }
+  case Intrinsic::riscv_golem_analog_mvm_load: {
+    SDLoc DL(Op);
+    SDValue Chain = Op.getOperand(0);
+    SDValue Ptr   = Op.getOperand(2);
+    SDValue Tile  = Op.getOperand(3);
+
+    // Tile still needs to be XLEN for the instruction
+    MVT XLenVT = Subtarget.getXLenVT();
+    if (Tile.getSimpleValueType() != XLenVT)
+      Tile = DAG.getNode(ISD::ANY_EXTEND, DL, XLenVT, Tile);
+
+    SDVTList VTs = DAG.getVTList(MVT::Other);
+    return DAG.getNode(RISCVISD::ANALOG_MVM_LOAD, DL, VTs,
+                       Chain, Ptr, Tile);
+  }
+  case Intrinsic::riscv_golem_analog_mvm: {
+    SDLoc DL(Op);
+    SDValue Chain = Op.getOperand(0);
+    SDValue Tile  = Op.getOperand(2);
+
+    // Tile still needs to be XLEN for the instruction
+    MVT XLenVT = Subtarget.getXLenVT();
+    if (Tile.getSimpleValueType() != XLenVT)
+      Tile = DAG.getNode(ISD::ANY_EXTEND, DL, XLenVT, Tile);
+
+    SDVTList VTs = DAG.getVTList(MVT::Other);
+    return DAG.getNode(RISCVISD::ANALOG_MVM, DL, VTs,
+                       Chain, Tile);
+  }
+  case Intrinsic::riscv_golem_analog_mvm_store: {
+    SDLoc DL(Op);
+    SDValue Chain = Op.getOperand(0);
+    SDValue Ptr   = Op.getOperand(2);
+    SDValue Tile  = Op.getOperand(3);
+
+    // Tile still needs to be XLEN for the instruction
+    MVT XLenVT = Subtarget.getXLenVT();
+    if (Tile.getSimpleValueType() != XLenVT)
+      Tile = DAG.getNode(ISD::ANY_EXTEND, DL, XLenVT, Tile);
+
+    // CHAIN-ONLY result
+    SDVTList VTs = DAG.getVTList(MVT::Other);
+    return DAG.getNode(RISCVISD::ANALOG_MVM_STORE, DL, VTs,
+                       Chain, Ptr, Tile);
+  }
+  case Intrinsic::riscv_golem_analog_mvm_move: {
+    SDLoc DL(Op);
+    SDValue Chain = Op.getOperand(0);
+    SDValue Tile_a  = Op.getOperand(2);
+    SDValue Tile_b  = Op.getOperand(3);
+
+    // Tile still needs to be XLEN for the instruction
+    MVT XLenVT = Subtarget.getXLenVT();
+    if (Tile_a.getSimpleValueType() != XLenVT)
+      Tile_a = DAG.getNode(ISD::ANY_EXTEND, DL, XLenVT, Tile_a);
+
+    if (Tile_b.getSimpleValueType() != XLenVT)
+      Tile_b = DAG.getNode(ISD::ANY_EXTEND, DL, XLenVT, Tile_b);
+
+    // CHAIN-ONLY result
+    SDVTList VTs = DAG.getVTList(MVT::Other);
+    return DAG.getNode(RISCVISD::ANALOG_MVM_MOVE, DL, VTs,
+                       Chain, Tile_a, Tile_b);
+  }
   }
 
   return lowerVectorIntrinsicScalars(Op, DAG, Subtarget);
