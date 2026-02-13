@@ -709,6 +709,18 @@ RISCVTargetLowering::RISCVTargetLowering(const TargetMachine &TM,
     setOperationAction(ISD::CLEAR_CACHE, MVT::Other, Custom);
   }
 
+  // Golem analog intrinsics are lowered via LowerINTRINSIC_VOID/W_CHAIN into
+  // RISCVISD::ANALOG_MVM_* nodes. Ensure custom lowering is enabled even when
+  // RVV is not present, otherwise legalization sees raw target intrinsics and
+  // fails to promote i32 tile-id operands on RV64.
+  if (Subtarget.hasVendorXGolemAnalog()) {
+    setOperationAction({ISD::INTRINSIC_W_CHAIN, ISD::INTRINSIC_VOID},
+                       MVT::Other, Custom);
+    if (Subtarget.is64Bit())
+      setOperationAction({ISD::INTRINSIC_W_CHAIN, ISD::INTRINSIC_VOID},
+                         MVT::i32, Custom);
+  }
+
   if (Subtarget.hasVInstructions()) {
     setBooleanVectorContents(ZeroOrOneBooleanContent);
 

@@ -815,6 +815,5 @@ def GOLEM_ANALOG_CPU : RISCVProcessorModel<"golem-analog",
                                              FeatureStdExtF,
                                              FeatureStdExtD,
                                              FeatureStdExtC,
-                                             FeatureStdExtV,
                                              FeatureVendorXGolemAnalog]
                                             >;
